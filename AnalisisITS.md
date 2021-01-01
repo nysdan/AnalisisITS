@@ -1,5 +1,5 @@
 Este es el pipeline seguido para el análisis de los metagenomas de
-amplicones de ITS del trabajo de Daniella Senatore, utilizando dada2.
+amplicones de ITS, utilizando dada2.
 Para correrlo se requieren los paquetes dada2, ShortRead y phyloseq, así
 como también Qiime2. Para instalar Qiime2 podemos consultar el tutorial
 disponible en
