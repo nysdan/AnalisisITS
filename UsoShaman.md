@@ -123,3 +123,12 @@ pueden seleccionarse en la pantalla de inicio.
 
 > Este es un tutorial inicial sobre el uso de Shaman, que no suplanta
 > los manuales y tutoriales oficiales de la herramienta.
+
+Referencias
+===========
+
+-   SHAMAN: a user-friendly website for metataxonomic analysis from raw
+    reads to statistical analysis Volant S, Lechat P, Woringer P,
+    Motreff L, Campagne P, Malabat C, Kennedy S, Ghozlane A; BMC
+    Bioinformatics 2020 Aug 10;21(1):345.  
+-   <a href="https://shaman.pasteur.fr" class="uri">https://shaman.pasteur.fr</a>
