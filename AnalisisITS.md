@@ -364,7 +364,8 @@ archivos trimmeados y luego se aplica la función. Para los datos de
 IonTorrent es necesario agregar el parámetro `trimLeft=15`, que elimina
 las primeras 15 bases de los reads.
 
-**Paso:** trimming de los reads por calidad.
+**Paso:** 
+- trimming de los reads por calidad.
 
 **Requerimientos:**
 
