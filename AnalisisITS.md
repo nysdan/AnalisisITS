@@ -1,5 +1,5 @@
 Este es el pipeline seguido para el análisis de los metagenomas de
-amplicones de ITS, utilizando dada2.
+amplicones de ITS del trabajo de Daniella Senatore, utilizando dada2.
 Para correrlo se requieren los paquetes dada2, ShortRead y phyloseq, así
 como también Qiime2. Para instalar Qiime2 podemos consultar el tutorial
 disponible en
@@ -747,3 +747,39 @@ Estas tablas, exportadas como archivos de texto con columnas separadas
 por tabulaciones puede ser importada en Shaman y analizarse y
 visualizarse los metagenomas de las muestras, además de realizar
 comparaciones.
+
+Referencias
+===========
+
+-   Manual de Qiime2 disponible en
+    <a href="https://docs.qiime2.org/2020.11/" class="uri">https://docs.qiime2.org/2020.11/</a>  
+-   Bolyen E, Rideout JR, Dillon MR, Bokulich NA, Abnet CC, Al-Ghalith
+    GA, Alexander H, Alm EJ, Arumugam M, Asnicar F, Bai Y, Bisanz JE,
+    Bittinger K, Brejnrod A, Brislawn CJ, Brown CT, Callahan BJ,
+    Caraballo-Rodríguez AM, Chase J, Cope EK, Da Silva R, Diener C,
+    Dorrestein PC, Douglas GM, Durall DM, Duvallet C, Edwardson CF,
+    Ernst M, Estaki M, Fouquier J, Gauglitz JM, Gibbons SM, Gibson DL,
+    Gonzalez A, Gorlick K, Guo J, Hillmann B, Holmes S, Holste H,
+    Huttenhower C, Huttley GA, Janssen S, Jarmusch AK, Jiang L, Kaehler
+    BD, Kang KB, Keefe CR, Keim P, Kelley ST, Knights D, Koester I,
+    Kosciolek T, Kreps J, Langille MGI, Lee J, Ley R, Liu YX, Loftfield
+    E, Lozupone C, Maher M, Marotz C, Martin BD, McDonald D, McIver LJ,
+    Melnik AV, Metcalf JL, Morgan SC, Morton JT, Naimey AT, Navas-Molina
+    JA, Nothias LF, Orchanian SB, Pearson T, Peoples SL, Petras D,
+    Preuss ML, Pruesse E, Rasmussen LB, Rivers A, Robeson MS, Rosenthal
+    P, Segata N, Shaffer M, Shiffer A, Sinha R, Song SJ, Spear JR,
+    Swafford AD, Thompson LR, Torres PJ, Trinh P, Tripathi A, Turnbaugh
+    PJ, Ul-Hasan S, van der Hooft JJJ, Vargas F, Vázquez-Baeza Y,
+    Vogtmann E, von Hippel M, Walters W, Wan Y, Wang M, Warren J, Weber
+    KC, Williamson CHD, Willis AD, Xu ZZ, Zaneveld JR, Zhang Y, Zhu Q,
+    Knight R, and Caporaso JG. 2019. Reproducible, interactive, scalable
+    and extensible microbiome data science using QIIME 2. Nature
+    Biotechnology 37: 852–857.
+    <a href="https://doi.org/10.1038/s41587-019-0209-9" class="uri">https://doi.org/10.1038/s41587-019-0209-9</a>  
+-   Manual de dada2 disponible en
+    <a href="https://benjjneb.github.io/dada2/tutorial.html" class="uri">https://benjjneb.github.io/dada2/tutorial.html</a>  
+-   DADA2 ITS Pipeline Workflow:
+    <a href="https://benjjneb.github.io/dada2/ITS_workflow.html" class="uri">https://benjjneb.github.io/dada2/ITS_workflow.html</a>  
+-   FAQ de dada2:
+    <a href="https://benjjneb.github.io/dada2/faq.html" class="uri">https://benjjneb.github.io/dada2/faq.html</a>  
+-   <a href="https://www.nature.com/articles/nmeth.3869" class="uri">https://www.nature.com/articles/nmeth.3869</a>
