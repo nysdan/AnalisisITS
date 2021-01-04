@@ -347,15 +347,11 @@ archivos trimmeados y luego se aplica la función. Para los datos de
 IonTorrent es necesario agregar el parámetro `trimLeft=15`, que elimina
 las primeras 15 bases de los reads.
 
-**Paso:** trimming de los reads por calidad.
-
-**Requerimientos:**
-
+**Paso:** trimming de los reads por calidad.  
+**Requerimientos:**  
 -   reads sin adaptadores en archivos fastq o fastqc  
--   nombres que tomarán los archivos trimmeados
-
-**Se obtiene:**
-
+-   nombres que tomarán los archivos trimmeados  
+**Se obtiene:**  
 -   reads filtrados por calidad:
 
     -   `trimLeft = 15`: se eliminan las primeras 15 bases  
@@ -463,16 +459,12 @@ La función `dada` se aplica sobre los reads limpios, filtrados y
 trimmeados sin duplicados.
 
 **Paso:**  
-- eliminación de ruido, inferencia de variantes
-
-**Requiere:**
-
+- eliminación de ruido, inferencia de variantes  
+**Requiere:**  
 -   reads filtrados, limpios, desreplicados  
 -   objeto que contiene los resultados de aplicar la función
-    `learnErrors()`
-
-**Se obtiene:**  
-- una lista con tantos elementos como muestras, donde cada elemento es un objeto de clase *dada* que contiene los resultados de aplicar la función `dada`
+    `learnErrors()`  
+**Se obtiene:**  una lista con tantos elementos como muestras, donde cada elemento es un objeto de clase *dada* que contiene los resultados de aplicar la función `dada`
 
 ``` r
 dadaFs <- dada(derepFs, 
@@ -483,13 +475,11 @@ dadaFs <- dada(derepFs,
 ```
 
 `multithread = TRUE` indica que se utulizarán varios núcleos en
-paralelo.
-
+paralelo  
 `HOMOPOLYMER_GAP_PENALTY = -1` está recomendado para datos de Ion
 Torrent. Se refiere al costo de los gaps en regiones homopoliméricas de
 más de 3 bases repetidas. Si se deja como `NULL` estos gaps se tratan
-igual a los normales
-
+igual a los normales  
 `BAND_SIZE = 32` está recomendado para datos de Ion Torrent. Cuando se
 setea se realiza alineamientos pareados globales (Needleman-Wunsch) por
 bandas. Las bandas restringen el número cumulativo neto de inserciones
@@ -513,11 +503,9 @@ dim(seqtab)
 
 ### Eliminar quimeras
 
-**Paso:** eliminación de quimeras
-
-**Requiere:** tabla de secuencias obtenida anteriormente
-
-**Se obtiene:** tabla de secuencias sin quimeras
+**Paso:** eliminación de quimeras  
+**Requiere:** tabla de secuencias obtenida anteriormente  
+**Se obtiene:** tabla de secuencias sin quimeras  
 
 ``` r
 seqtab.nochim <- removeBimeraDenovo(seqtab, 
@@ -583,10 +571,8 @@ obtenida desde
 <a href="https://unite.ut.ee" class="uri">https://unite.ut.ee</a>. Esto
 se logra con la función `assignTaxonomy()`:
 
-**Paso:** asignación las secuencias a taxones
-
-**Requiere:**
-
+**Paso:** asignación las secuencias a taxones  
+**Requiere:**  
 -   secuencias no quiméricas  
 -   archivo con las secuencias de referencia en formato fasta
 
@@ -627,8 +613,7 @@ Análisis del metagenoma utilizando Phyloseq
 Resumen de los pasos seguidos hasta ahora:
 ------------------------------------------
 
-Antes de continuar, veremos el proceso que hemos transitado:
-
+Antes de continuar, veremos el proceso que hemos transitado:  
 1.  Preprocesamiento de reads  
     1.1. utilizamos Qiime2 para desmultiplexar y eliminar barcodes  
     1.2. utilizando dada2:  
