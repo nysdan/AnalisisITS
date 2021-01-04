@@ -19,11 +19,10 @@ Pasos previos en la línea de comandos, utilizando Qiime
 ### Comprimir el archivo fastq.
 
 Antes de importar las secuencias a Qiime debemos comprimir el archivo
-utilizando el programa `gzip`:
+utilizando el programa `gzip`
 
-**Requiere:** archivo .fastq multiplexado.
-
-**Se obtiene:** archivo .fastq.gz
+**Requiere:** archivo .fastq multiplexado  
+**Se obtiene:** archivo .fastq.gz  
 
 ``` bash
 gzip archivo_fastq_multiplex.fastq
@@ -34,8 +33,7 @@ gzip archivo_fastq_multiplex.fastq
 Dado que utilizaremos Qiime2 para demultiplexar los reads, el primer
 paso en el *pipeline* de Qiime es la importación.
 
-**Requiere:** archivo multiplexado.fastq.gz
-
+**Requiere:** archivo multiplexado.fastq.gz  
 **Se obtiene:** archivo multiplexado.qza
 
 ``` bash
@@ -45,11 +43,8 @@ qiime tools import --type MultiplexedSingleEndBarcodeInSequence  --input-path ar
 **Argumentos del comando:**
 
 `--input-path`: path al archivo que se importa.  
-`--output-path`: nombre que se le da al archivo importado. Tiene
-extensión qza.  
-`--type MultiplexedSingleEndBarcodeInSequence`: indica que el archivo
-que se importa es multiplexado, contiene barcodes y contiene reads
-single end (SE).
+`--output-path`: nombre que se le da al archivo importado. Tiene extensión qza.  
+`--type MultiplexedSingleEndBarcodeInSequence`: indica que el archivo que se importa es multiplexado, contiene barcodes y contiene reads single end (SE).
 
 **Output:**
 
@@ -61,8 +56,7 @@ single end (SE).
 Este paso se realizó según las instrucciones disponibles en
 <a href="https://forum.qiime2.org/t/demultiplexing-and-trimming-adapters-from-reads-with-q2-cutadapt/2313" class="uri">https://forum.qiime2.org/t/demultiplexing-and-trimming-adapters-from-reads-with-q2-cutadapt/2313</a>.
 
-**Paso:** demultiplexar
-
+**Paso:** demultiplexar  
 **Requiere:**
 
 -   archivo *mapping file*: que contiene una tabla con columnas
@@ -82,26 +76,21 @@ qiime cutadapt demux-single --i-seqs multiplexed-seqs.qza --m-barcodes-file mapp
 
 **Argumentos del comando:**
 
-`cutadapt demux-single`: se ejecuta el programa `Cutadapt` para
-demultiplexar secuencias SE.  
-`--o-untrimmed-sequences`: locación de las secuencias que no matchearon
-con ningún barcode.  
+`cutadapt demux-single`: se ejecuta el programa `Cutadapt` para demultiplexar secuencias SE  
+`--o-untrimmed-sequences`: locación de las secuencias que no matchearon con ningún barcode.  
 `--i-seqs`: nombre del archivo importado (qza), que se generó en el paso
 anterior.  
-`--m-barcodes-file`: path al *mapping file*.  
-`--m-barcodes-column`: nombre de la columna del *mapping file* que
-contiene la secuencias de los barcodes.
+`--m-barcodes-file`: path al *mapping file*  
+`--m-barcodes-column`: nombre de la columna del *mapping file* que contiene la secuencias de los barcodes.
 
 ### Remover los barcodes
 
 Una vez demultiplexados, deben removerse los barcodes de los reads. Para
 esto volveremos a utilizar el *plug-in* Cutadapt de Qiime.
 
-**Paso:** remoción de barcodes
-
-**Requiere:** path a las secuencias demultiplexadas del paso anterior
-
-**Se obtiene:** reads multiplexados y trimmeados en archivo .qza
+**Paso:** remoción de barcodes  
+**Requiere:** path a las secuencias demultiplexadas del paso anterior  
+**Se obtiene:** reads multiplexados y trimmeados en archivo .qza 
 
 ``` bash
 qiime cutadapt trim-single --i-demultiplexed-sequences demultiplex_seqs.qza --o-trimmed-sequences trimmed-demult_seqs.qza
@@ -109,14 +98,9 @@ qiime cutadapt trim-single --i-demultiplexed-sequences demultiplex_seqs.qza --o-
 
 **Argumentos del comando:**
 
-`cutadapt trim-single`: se ejecuta el programa `Cutadapt` para trimmear
-secuencias de adaptadores o barcodes en reads SE.
-
-`--i-demultiplexed-sequences`: archivo .qza que contiene los reads
-demultiplexados obtenidos en el paso anterior.
-
-`--o-trimmed-sequences`: nombre del archivo de salida (qza) que contiene
-los reads demultiplexados y trimmeados.
+`cutadapt trim-single`: se ejecuta el programa `Cutadapt` para trimmear secuencias de adaptadores o barcodes en reads SE  
+`--i-demultiplexed-sequences`: archivo .qza que contiene los reads demultiplexados obtenidos en el paso anterior  
+`--o-trimmed-sequences`: nombre del archivo de salida (qza) que contiene los reads demultiplexados y trimmeados  
 
 ### Exportar los reads demultiplexados sin barcodes
 
@@ -126,10 +110,8 @@ almacenado en *artefactos*. Para continuar el procesamiento de los datos
 en dada2 debemos transformarlos en fastq. Para esto exportamos los datos
 contenidos en archivos .qza.
 
-**Paso:** exportar datos de qiime
-
-**Requiere:** archivos a exportar
-
+**Paso:** exportar datos de qiime  
+**Requiere:** archivos a exportar  
 **Se obtiene:** archivos en formato apropiado para continuar utilizando otro software
 
 ``` bash
@@ -139,9 +121,8 @@ qiime tools extract --input-path  trimmed-demult_seqs.qza --output-path trim-dem
 
 **Argumentos**:
 
-`--input-path`: path del archivo qza a exportar
-
-`--output-path`: nombre de la carpeta que contiene los datos exportados
+`--input-path`: path del archivo qza a exportar  
+`--output-path`: nombre de la carpeta que contiene los datos exportados 
 
 Procesamiento de datos en R utilizando `dada2`
 ==============================================
@@ -209,7 +190,7 @@ fnFs.filtN <- file.path(path, "filtN", basename(fnFs))
 fnFs.filtN
 ```
 
-    [1] "trimm_demult/filtN/A_AGGCAATTGC_L001_R1_001.fastq.gz"  
+     [1] "trimm_demult/filtN/A_AGGCAATTGC_L001_R1_001.fastq.gz"  
      [2] "trimm_demult/filtN/B_TTAGTCGGAC_L001_R1_001.fastq.gz"  
      [3] "trimm_demult/filtN/C_CAGATCCATC_L001_R1_001.fastq.gz"  
      [4] "trimm_demult/filtN/D_TCGCAATTAC_L001_R1_001.fastq.gz"  
@@ -458,8 +439,7 @@ pueden consultarse en el paper del paquete:
 La función `dada` se aplica sobre los reads limpios, filtrados y
 trimmeados sin duplicados.
 
-**Paso:**  
-- eliminación de ruido, inferencia de variantes  
+**Paso:** eliminación de ruido, inferencia de variantes  
 **Requiere:**  
 -   reads filtrados, limpios, desreplicados  
 -   objeto que contiene los resultados de aplicar la función
@@ -474,25 +454,13 @@ dadaFs <- dada(derepFs,
                BAND_SIZE = 32)
 ```
 
-`multithread = TRUE` indica que se utulizarán varios núcleos en
-paralelo  
-`HOMOPOLYMER_GAP_PENALTY = -1` está recomendado para datos de Ion
-Torrent. Se refiere al costo de los gaps en regiones homopoliméricas de
-más de 3 bases repetidas. Si se deja como `NULL` estos gaps se tratan
-igual a los normales  
-`BAND_SIZE = 32` está recomendado para datos de Ion Torrent. Cuando se
-setea se realiza alineamientos pareados globales (Needleman-Wunsch) por
-bandas. Las bandas restringen el número cumulativo neto de inserciones
-en una secuencua contra la otra. El valor por defecto es 16, pero cuando
-se aplica a datos de pirosecuenciación, con altas tasas de incorporación
-de indels, debe incrementarse.
+`multithread = TRUE` indica que se utulizarán varios núcleos en paralelo  
+`HOMOPOLYMER_GAP_PENALTY = -1` está recomendado para datos de Ion Torrent. Se refiere al costo de los gaps en regiones homopoliméricas de más de 3 bases repetidas. Si se deja como `NULL` estos gaps se tratan igual a los normales  
+`BAND_SIZE = 32` está recomendado para datos de Ion Torrent. Cuando se setea se realiza alineamientos pareados globales (Needleman-Wunsch) por bandas. Las bandas restringen el número cumulativo neto de inserciones en una secuencua contra la otra. El valor por defecto es 16, pero cuando se aplica a datos de pirosecuenciación, con altas tasas de incorporación de indels, debe incrementarse.
 
 ### Construir tabla de secuencias
 
-Esta función construye una tabla de secuencias similar a la OTU table,
-que contiene una fila para cada muestra y una columna para cada
-secuencia única para todas las muestras. Los nombres de las columnas
-contienen las secuencias encontradas.
+Esta función construye una tabla de secuencias similar a la OTU table, que contiene una fila para cada muestra y una columna para cada secuencia única para todas las muestras. Los nombres de las columnas contienen las secuencias encontradas.
 
 ``` r
 seqtab <- makeSequenceTable(dadaFs)
@@ -513,9 +481,7 @@ seqtab.nochim <- removeBimeraDenovo(seqtab,
                                     multithread = TRUE, verbose = TRUE)
 ```
 
-Al elegir el método `consensus`, las muestras en la tabla de secuencias
-son chequeadas independientemente, y se construye una desición
-consensuada para cada variante de las secuencias.
+Al elegir el método `consensus`, las muestras en la tabla de secuencias son chequeadas independientemente, y se construye una desición consensuada para cada variante de las secuencias.
 
 > This function implements a table-specific version of de novo bimera
 > detection. In short, bimeric sequences are flagged on a
@@ -529,11 +495,7 @@ consensuada para cada variante de las secuencias.
 Evolución de los reads a través del pipeline
 --------------------------------------------
 
-En este paso, que puede realizarse en cualquier punto del pipeline,
-vemos cómo ha variado el número de reads a traves de los diferentes
-pasos del pipeline. Se produce una tabla con tantas filas como muestras
-y con las columnas correspondientes a los pasos del pipeline: filtrado,
-denoise y remoción de quimeras.
+En este paso, que puede realizarse en cualquier punto del pipeline, vemos cómo ha variado el número de reads a traves de los diferentes pasos del pipeline. Se produce una tabla con tantas filas como muestras y con las columnas correspondientes a los pasos del pipeline: filtrado, denoise y remoción de quimeras.
 
 ``` r
 getN <- function(x) sum(getUniques(x))
@@ -576,9 +538,7 @@ se logra con la función `assignTaxonomy()`:
 -   secuencias no quiméricas  
 -   archivo con las secuencias de referencia en formato fasta
 
-**Se obtiene:** Una tabla que contiene como nombres de filas las secuencias y en las
-    columnas la taxonomía inferida, donde en cada columna se define el
-    nivel alcanzado
+**Se obtiene:** Una tabla que contiene como nombres de filas las secuencias y en las columnas la taxonomía inferida, donde en cada columna se define el nivel alcanzado
 
 ``` r
 unite.ref <- "UNITED_11-2020.fasta"
