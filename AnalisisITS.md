@@ -480,17 +480,17 @@ pueden consultarse en el paper del paquete:
 La función `dada` se aplica sobre los reads limpios, filtrados y
 trimmeados sin duplicados.
 
-**Paso: ** eliminación de ruido, inferencia de variantes
+**Paso:**  
+- eliminación de ruido, inferencia de variantes
 
-**Requiere: **
+**Requiere:**
 
 -   reads filtrados, limpios, desreplicados  
 -   objeto que contiene los resultados de aplicar la función
     `learnErrors()`
 
-**Se obtiene: ** una lista con tantos elementos como muestras, donde
-cada elemento es un objeto de clase *dada* que contiene los resultados
-de aplicar la función `dada`
+**Se obtiene:**  
+- una lista con tantos elementos como muestras, donde cada elemento es un objeto de clase *dada* que contiene los resultados de aplicar la función `dada`
 
 ``` r
 dadaFs <- dada(derepFs, 
@@ -531,7 +531,16 @@ dim(seqtab)
 
 ### Eliminar quimeras
 
-En este paso se eliminan las quimeras.
+**Paso:**  
+- eliminación de quimeras
+
+**Requiere:**
+
+-   tabla de secuencias obtenida anteriormente
+
+**Se obtiene:**
+
+- tabla de secuencias sin quimeras
 
 ``` r
 seqtab.nochim <- removeBimeraDenovo(seqtab, 
@@ -596,6 +605,10 @@ Para la asignación taxonómica utilizaremos la base de datos **UNITE**,
 obtenida desde
 <a href="https://unite.ut.ee" class="uri">https://unite.ut.ee</a>. Esto
 se logra con la función `assignTaxonomy()`:
+
+**Paso:**
+
+-   asignación las secuencias a taxones
 
 **Requiere:**
 
