@@ -21,9 +21,7 @@ Pasos previos en la línea de comandos, utilizando Qiime
 Antes de importar las secuencias a Qiime debemos comprimir el archivo
 utilizando el programa `gzip`:
 
-**Requiere:**
-
--   archivo .fastq multiplexado.
+**Requiere:** archivo .fastq multiplexado.
 
 **Se obtiene:** archivo .fastq.gz
 
@@ -36,13 +34,9 @@ gzip archivo_fastq_multiplex.fastq
 Dado que utilizaremos Qiime2 para demultiplexar los reads, el primer
 paso en el *pipeline* de Qiime es la importación.
 
-**Requiere:**
+**Requiere:** archivo multiplexado.fastq.gz
 
--   archivo multiplexado.fastq.gz
-
-**Se obtiene:**
-
--   archivo multiplexado.qza
+**Se obtiene:** archivo multiplexado.qza
 
 ``` bash
 qiime tools import --type MultiplexedSingleEndBarcodeInSequence  --input-path archivo_fastq_multiplex.fastq.gz --output-path multiplexed-seqs.qza
@@ -50,11 +44,9 @@ qiime tools import --type MultiplexedSingleEndBarcodeInSequence  --input-path ar
 
 **Argumentos del comando:**
 
-`--input-path`: path al archivo que se importa.
-
+`--input-path`: path al archivo que se importa.  
 `--output-path`: nombre que se le da al archivo importado. Tiene
-extensión qza.
-
+extensión qza.  
 `--type MultiplexedSingleEndBarcodeInSequence`: indica que el archivo
 que se importa es multiplexado, contiene barcodes y contiene reads
 single end (SE).
@@ -69,6 +61,8 @@ single end (SE).
 Este paso se realizó según las instrucciones disponibles en
 <a href="https://forum.qiime2.org/t/demultiplexing-and-trimming-adapters-from-reads-with-q2-cutadapt/2313" class="uri">https://forum.qiime2.org/t/demultiplexing-and-trimming-adapters-from-reads-with-q2-cutadapt/2313</a>.
 
+**Paso:** demultiplexar
+
 **Requiere:**
 
 -   archivo *mapping file*: que contiene una tabla con columnas
@@ -79,9 +73,7 @@ Este paso se realizó según las instrucciones disponibles en
 -   el nombre que tendrá el directorio que contendrá los reads
     demultiplexados.
 
-**Se obtiene:**
-
--   archivos con los reads de cada muestra por separado en el directorio
+**Se obtiene:** archivos con los reads de cada muestra por separado en el directorio
     especificado.
 
 ``` bash
@@ -91,16 +83,12 @@ qiime cutadapt demux-single --i-seqs multiplexed-seqs.qza --m-barcodes-file mapp
 **Argumentos del comando:**
 
 `cutadapt demux-single`: se ejecuta el programa `Cutadapt` para
-demultiplexar secuencias SE.
-
+demultiplexar secuencias SE.  
 `--o-untrimmed-sequences`: locación de las secuencias que no matchearon
-con ningún barcode.
-
+con ningún barcode.  
 `--i-seqs`: nombre del archivo importado (qza), que se generó en el paso
-anterior.
-
-`--m-barcodes-file`: path al *mapping file*.
-
+anterior.  
+`--m-barcodes-file`: path al *mapping file*.  
 `--m-barcodes-column`: nombre de la columna del *mapping file* que
 contiene la secuencias de los barcodes.
 
@@ -109,13 +97,11 @@ contiene la secuencias de los barcodes.
 Una vez demultiplexados, deben removerse los barcodes de los reads. Para
 esto volveremos a utilizar el *plug-in* Cutadapt de Qiime.
 
-**Requiere:**
+**Paso:** remoción de barcodes
 
--   path a las secuencias demultiplexadas del paso anterior
+**Requiere:** path a las secuencias demultiplexadas del paso anterior
 
-**Se obtiene:**
-
--   Reads multiplexados y trimmeados en archivo .qza
+**Se obtiene:** reads multiplexados y trimmeados en archivo .qza
 
 ``` bash
 qiime cutadapt trim-single --i-demultiplexed-sequences demultiplex_seqs.qza --o-trimmed-sequences trimmed-demult_seqs.qza
@@ -140,14 +126,11 @@ almacenado en *artefactos*. Para continuar el procesamiento de los datos
 en dada2 debemos transformarlos en fastq. Para esto exportamos los datos
 contenidos en archivos .qza.
 
-**Requiere:**
+**Paso:** exportar datos de qiime
 
--   archivos a exportar
+**Requiere:** archivos a exportar
 
-**Se obtiene:**
-
--   archivos en formato apropiado para continuar utilizando otro
-    software
+**Se obtiene:** archivos en formato apropiado para continuar utilizando otro software
 
 ``` bash
 mkdir demulti
@@ -254,10 +237,10 @@ crearán.
 filterAndTrim(fnFs, fnFs.filtN, maxN = 0, multithread = TRUE)
 ```
 
-`maxN = 0` indica que el número máximo de Ns en cada secuencia es 0
-
+`maxN = 0` indica que el número máximo de Ns en cada secuencia es 0  
+`maxN = 0` indica que el número máximo de Ns en cada secuencia es 0  
 `multithreads = TRUE` indica que se pueden utilizar varios nucleos en el
-proceso.
+proceso
 
 Ahora se eliminarán los adaptadores de los reads. Para esto, primero
 cargamos la secuencia del adaptador a al objeto `FWD` para luego obtener
@@ -364,8 +347,7 @@ archivos trimmeados y luego se aplica la función. Para los datos de
 IonTorrent es necesario agregar el parámetro `trimLeft=15`, que elimina
 las primeras 15 bases de los reads.
 
-**Paso:** 
-- trimming de los reads por calidad.
+**Paso:** trimming de los reads por calidad.
 
 **Requerimientos:**
 
@@ -531,16 +513,11 @@ dim(seqtab)
 
 ### Eliminar quimeras
 
-**Paso:**  
-- eliminación de quimeras
+**Paso:** eliminación de quimeras
 
-**Requiere:**
+**Requiere:** tabla de secuencias obtenida anteriormente
 
--   tabla de secuencias obtenida anteriormente
-
-**Se obtiene:**
-
-- tabla de secuencias sin quimeras
+**Se obtiene:** tabla de secuencias sin quimeras
 
 ``` r
 seqtab.nochim <- removeBimeraDenovo(seqtab, 
@@ -606,18 +583,14 @@ obtenida desde
 <a href="https://unite.ut.ee" class="uri">https://unite.ut.ee</a>. Esto
 se logra con la función `assignTaxonomy()`:
 
-**Paso:**
-
--   asignación las secuencias a taxones
+**Paso:** asignación las secuencias a taxones
 
 **Requiere:**
 
 -   secuencias no quiméricas  
 -   archivo con las secuencias de referencia en formato fasta
 
-**Se obtiene:**
-
--   Una tabla que contiene como nombres de filas las secuencias y en las
+**Se obtiene:** Una tabla que contiene como nombres de filas las secuencias y en las
     columnas la taxonomía inferida, donde en cada columna se define el
     nivel alcanzado
 
